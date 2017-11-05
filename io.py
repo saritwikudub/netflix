@@ -17,12 +17,16 @@ def loadObject(fileName):
     return pickle.load(fileHandler)
 
 
+# this takes roughly 1-2 minute for loading training data
+# no need to optimize
 def loadRaw(fileName):
+    print "loading file: " + fileName
     startTime = perf.start()
 
     data = np.loadtxt(fname=fileName,
                       delimiter=',',
                       dtype=data_type)
 
-    print "file: " + fileName + " , load time: " + perf.end(startTime)
+    print "file: " + fileName + " , load time: " + perf.elapsedTime(startTime)
+
     return data
